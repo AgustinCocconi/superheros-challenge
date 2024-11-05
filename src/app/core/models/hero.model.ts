@@ -15,4 +15,5 @@ export interface Hero {
     stories: {
         available: number;
     };
+    imageLoaded?: boolean;
 }

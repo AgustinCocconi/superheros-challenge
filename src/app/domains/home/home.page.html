@@ -12,12 +12,16 @@
       <ion-title size="large">{{ 'SUPERHEROES' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  @if (!isLoading()) {
   <ion-list>
     @for (hero of heroes(); track hero.id) {
     <ion-item (click)="viewHeroDetails(hero.id)" class="hero-item">
       <ion-thumbnail slot="start">
-        <img [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="{{ hero.name }}" class="thumbnail-img">
+        <img [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="{{ hero.id }}" class="thumbnail-img"
+          (load)="onImageLoad($event)" (error)="onImageError($event)">
+        @if (!hero.imageLoaded) {
+        <ion-skeleton-text animated class="skeleton-thumbnail"></ion-skeleton-text>
+        }
       </ion-thumbnail>
       <ion-label>
         <h2>{{ hero.name }}</h2>
@@ -25,4 +29,18 @@
     </ion-item>
     }
   </ion-list>
+  } @else {
+  <ion-list>
+    @for (i of skeletonArray; track i) {
+    <ion-item class="hero-item">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated class="skeleton-thumbnail"></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <ion-skeleton-text animated class="skeleton-text"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+  }
 </ion-content>
