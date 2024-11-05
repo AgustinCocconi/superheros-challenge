@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{ 'SUPERHEROES' | translate }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ 'SUPERHEROES' | translate }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    @for (hero of heroes(); track hero.id) {
+    <ion-item (click)="viewHeroDetails(hero.id)" class="hero-item">
+      <ion-thumbnail slot="start">
+        <img [src]="hero.thumbnail.path + '.' + hero.thumbnail.extension" alt="{{ hero.name }}" class="thumbnail-img">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ hero.name }}</h2>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+</ion-content>

@@ -1,0 +1,23 @@
+ion-content {
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+.hero-item {
+  --inner-padding-start: 8px;
+  --inner-padding-end: 8px;
+  --min-height: 80px;
+  border-bottom: 1px solid #ccc;
+}
+
+.thumbnail-img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+ion-label h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
